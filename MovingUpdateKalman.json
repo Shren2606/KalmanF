@@ -1,0 +1,1396 @@
+[
+    {
+        "id": "f7f6de95c140ceb4",
+        "type": "subflow",
+        "name": "Display",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 440,
+                "y": 240,
+                "wires": [
+                    {
+                        "id": "249c809afe921704"
+                    },
+                    {
+                        "id": "a173d8c22309847e"
+                    }
+                ]
+            }
+        ],
+        "out": [],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
+        "id": "067e026fa3a25137",
+        "type": "ui_chart",
+        "z": "f7f6de95c140ceb4",
+        "name": "Display KF ",
+        "group": "91057cd8.851a6",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "Kalman Filter",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "10",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#fe0127",
+            "#2d06ef",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 930,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "249c809afe921704",
+        "type": "change",
+        "z": "f7f6de95c140ceb4",
+        "name": "Kalman Filter",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Kalman Filter",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "hat_x",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 690,
+        "y": 240,
+        "wires": [
+            [
+                "067e026fa3a25137"
+            ]
+        ]
+    },
+    {
+        "id": "a173d8c22309847e",
+        "type": "change",
+        "z": "f7f6de95c140ceb4",
+        "name": "Measured Data",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "z_t1",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Measured Data",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 700,
+        "y": 280,
+        "wires": [
+            [
+                "067e026fa3a25137"
+            ]
+        ]
+    },
+    {
+        "id": "91057cd8.851a6",
+        "type": "ui_group",
+        "name": "Group 2",
+        "tab": "8f925bb2.0ad468",
+        "order": 2,
+        "disp": true,
+        "width": "13",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "e301aded3e300caa",
+        "type": "subflow",
+        "name": "Setting Parameters",
+        "info": "",
+        "category": "",
+        "in": [],
+        "out": [
+            {
+                "x": 720,
+                "y": 380,
+                "wires": [
+                    {
+                        "id": "f88819395a58873f",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
+        "id": "d8d41cf3add0e169",
+        "type": "change",
+        "z": "e301aded3e300caa",
+        "name": "(σᵥ)²",
+        "rules": [
+            {
+                "t": "set",
+                "p": "SQR_sigma_v",
+                "pt": "flow",
+                "to": "SQR_sigma_v",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 690,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8010ed9776a4739d",
+        "type": "change",
+        "z": "e301aded3e300caa",
+        "name": "(σₓ)²",
+        "rules": [
+            {
+                "t": "set",
+                "p": "SQR_sigma_x",
+                "pt": "flow",
+                "to": "SQR_sigma_x",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 690,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "62cce3ade5c28b0f",
+        "type": "change",
+        "z": "e301aded3e300caa",
+        "name": "(σᵥᵥ)²",
+        "rules": [
+            {
+                "t": "set",
+                "p": "SQR_sigma_w",
+                "pt": "flow",
+                "to": "SQR_sigma_w",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 690,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3e390a1e59c615eb",
+        "type": "ui_numeric",
+        "z": "e301aded3e300caa",
+        "name": "σᵥ",
+        "label": "σᵥ",
+        "tooltip": "",
+        "group": "dfe41f13.5610f",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "1",
+        "step": "0.01",
+        "className": "",
+        "x": 330,
+        "y": 200,
+        "wires": [
+            [
+                "550c43674e676f6b",
+                "8177e21b47e44ed0"
+            ]
+        ]
+    },
+    {
+        "id": "550c43674e676f6b",
+        "type": "ui_slider",
+        "z": "e301aded3e300caa",
+        "name": "σᵥ",
+        "label": "σᵥ",
+        "tooltip": "",
+        "group": "dfe41f13.5610f",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "1",
+        "step": "0.01",
+        "className": "",
+        "x": 190,
+        "y": 200,
+        "wires": [
+            [
+                "3e390a1e59c615eb"
+            ]
+        ]
+    },
+    {
+        "id": "4727e48d6c941103",
+        "type": "ui_numeric",
+        "z": "e301aded3e300caa",
+        "name": "σᵥᵥ",
+        "label": "σᵥᵥ",
+        "tooltip": "",
+        "group": "dfe41f13.5610f",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "1",
+        "step": "0.01",
+        "className": "",
+        "x": 330,
+        "y": 320,
+        "wires": [
+            [
+                "f5f11ea9d935aaed",
+                "1fcf59861298612a"
+            ]
+        ]
+    },
+    {
+        "id": "f5f11ea9d935aaed",
+        "type": "ui_slider",
+        "z": "e301aded3e300caa",
+        "name": "σᵥᵥ",
+        "label": "σᵥᵥ",
+        "tooltip": "",
+        "group": "dfe41f13.5610f",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "1",
+        "step": "0.01",
+        "className": "",
+        "x": 190,
+        "y": 320,
+        "wires": [
+            [
+                "4727e48d6c941103"
+            ]
+        ]
+    },
+    {
+        "id": "8177e21b47e44ed0",
+        "type": "function",
+        "z": "e301aded3e300caa",
+        "name": "(σᵥ)²",
+        "func": "msg.SQR_sigma_v = msg.payload**2 \nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 200,
+        "wires": [
+            [
+                "d8d41cf3add0e169"
+            ]
+        ]
+    },
+    {
+        "id": "6f92bcec7e997cb3",
+        "type": "ui_numeric",
+        "z": "e301aded3e300caa",
+        "name": "σₓ",
+        "label": "σₓ",
+        "tooltip": "",
+        "group": "dfe41f13.5610f",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "1",
+        "step": "0.01",
+        "className": "",
+        "x": 330,
+        "y": 260,
+        "wires": [
+            [
+                "09ebe35c0cb65af6",
+                "e5b0febb2059d71a"
+            ]
+        ]
+    },
+    {
+        "id": "09ebe35c0cb65af6",
+        "type": "ui_slider",
+        "z": "e301aded3e300caa",
+        "name": "σₓ",
+        "label": "σₓ",
+        "tooltip": "",
+        "group": "dfe41f13.5610f",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "1",
+        "step": "0.01",
+        "className": "",
+        "x": 190,
+        "y": 260,
+        "wires": [
+            [
+                "6f92bcec7e997cb3"
+            ]
+        ]
+    },
+    {
+        "id": "e5b0febb2059d71a",
+        "type": "function",
+        "z": "e301aded3e300caa",
+        "name": "(σₓ)²",
+        "func": "msg.SQR_sigma_x = msg.payload**2 \nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 260,
+        "wires": [
+            [
+                "8010ed9776a4739d"
+            ]
+        ]
+    },
+    {
+        "id": "1fcf59861298612a",
+        "type": "function",
+        "z": "e301aded3e300caa",
+        "name": "(σᵥᵥ)²",
+        "func": "msg.SQR_sigma_w = msg.payload**2 \nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 320,
+        "wires": [
+            [
+                "62cce3ade5c28b0f"
+            ]
+        ]
+    },
+    {
+        "id": "bc3133b8c20ac909",
+        "type": "ui_numeric",
+        "z": "e301aded3e300caa",
+        "name": "TrueValue",
+        "label": "True Value",
+        "tooltip": "",
+        "group": "dfe41f13.5610f",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "1",
+        "step": "0.01",
+        "className": "",
+        "x": 380,
+        "y": 80,
+        "wires": [
+            [
+                "0571e47403567540",
+                "fb8cfcd5254a3596"
+            ]
+        ]
+    },
+    {
+        "id": "0571e47403567540",
+        "type": "change",
+        "z": "e301aded3e300caa",
+        "name": "True Value",
+        "rules": [
+            {
+                "t": "set",
+                "p": "TrueValue",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 710,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fb8cfcd5254a3596",
+        "type": "ui_slider",
+        "z": "e301aded3e300caa",
+        "name": "TrueValue",
+        "label": "True Value",
+        "tooltip": "",
+        "group": "dfe41f13.5610f",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "10",
+        "step": "01",
+        "className": "",
+        "x": 200,
+        "y": 80,
+        "wires": [
+            [
+                "bc3133b8c20ac909"
+            ]
+        ]
+    },
+    {
+        "id": "90f9fdac0970270d",
+        "type": "change",
+        "z": "e301aded3e300caa",
+        "name": "x̂",
+        "rules": [
+            {
+                "t": "set",
+                "p": "hat_x",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 690,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f3800a3cfcb01bea",
+        "type": "ui_slider",
+        "z": "e301aded3e300caa",
+        "name": "Estimate the first x̂",
+        "label": "Estimate the first x̂",
+        "tooltip": "",
+        "group": "dfe41f13.5610f",
+        "order": 10,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "10",
+        "step": "01",
+        "className": "",
+        "x": 230,
+        "y": 140,
+        "wires": [
+            [
+                "733ddcf36bf9a95c"
+            ]
+        ]
+    },
+    {
+        "id": "733ddcf36bf9a95c",
+        "type": "ui_numeric",
+        "z": "e301aded3e300caa",
+        "name": "Estimate the first x̂",
+        "label": "Estimate the first x̂",
+        "tooltip": "",
+        "group": "dfe41f13.5610f",
+        "order": 9,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "1",
+        "step": "0.01",
+        "className": "",
+        "x": 450,
+        "y": 140,
+        "wires": [
+            [
+                "f3800a3cfcb01bea",
+                "90f9fdac0970270d"
+            ]
+        ]
+    },
+    {
+        "id": "860bf4ee5f013d47",
+        "type": "ui_button",
+        "z": "e301aded3e300caa",
+        "name": "",
+        "group": "dfe41f13.5610f",
+        "order": 11,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "submit",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 350,
+        "y": 380,
+        "wires": [
+            [
+                "f88819395a58873f"
+            ]
+        ]
+    },
+    {
+        "id": "f88819395a58873f",
+        "type": "function",
+        "z": "e301aded3e300caa",
+        "name": "Get Value",
+        "func": "//get value\nmsg.SQR_sigma_v = flow.get('SQR_sigma_v') \nmsg.SQR_sigma_x = flow.get('SQR_sigma_x')\nmsg.SQR_sigma_w = flow.get('SQR_sigma_w')\nmsg.hat_x = flow.get('hat_x')\nmsg.TrueValue = flow.get('TrueValue')\nglobal.set(\"loop\",1)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dfe41f13.5610f",
+        "type": "ui_group",
+        "name": "Group 1",
+        "tab": "8f925bb2.0ad468",
+        "order": 1,
+        "disp": true,
+        "width": "8",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "8f925bb2.0ad468",
+        "type": "ui_tab",
+        "name": "KF_paper",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "1239123469e44d93",
+        "type": "subflow",
+        "name": "Kalman Gain",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 260,
+                "y": 180,
+                "wires": [
+                    {
+                        "id": "6c555cf1348ad813"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 800,
+                "y": 180,
+                "wires": [
+                    {
+                        "id": "8d99c9bc9e30a400",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
+        "id": "8d99c9bc9e30a400",
+        "type": "change",
+        "z": "1239123469e44d93",
+        "name": "(σₓ)²  / (σᵥᵥ)² = Kalman_Gain",
+        "rules": [
+            {
+                "t": "set",
+                "p": "Kalman_Gain",
+                "pt": "flow",
+                "to": "$flowContext(\"SQR_hat_sigma_x\")/$flowContext(\"SQR_sigma_w\")",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "Kalman_Gain",
+                "pt": "msg",
+                "to": "Kalman_Gain",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 600,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6c555cf1348ad813",
+        "type": "change",
+        "z": "1239123469e44d93",
+        "name": "setup",
+        "rules": [
+            {
+                "t": "set",
+                "p": "SQR_hat_sigma_x",
+                "pt": "flow",
+                "to": "SQR_hat_sigma_x",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "SQR_sigma_w",
+                "pt": "flow",
+                "to": "SQR_sigma_w",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 390,
+        "y": 180,
+        "wires": [
+            [
+                "8d99c9bc9e30a400"
+            ]
+        ]
+    },
+    {
+        "id": "e7154d9d7cd948fe",
+        "type": "subflow",
+        "name": "Estimation : x̂(t+1)",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 140,
+                "y": 140,
+                "wires": [
+                    {
+                        "id": "8805b4d30b5445cb"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 980,
+                "y": 140,
+                "wires": [
+                    {
+                        "id": "88545a9759c2d6db",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
+        "id": "8805b4d30b5445cb",
+        "type": "change",
+        "z": "e7154d9d7cd948fe",
+        "name": "setup",
+        "rules": [
+            {
+                "t": "set",
+                "p": "SQR_hat_sigma_x",
+                "pt": "flow",
+                "to": "SQR_hat_sigma_x",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "SQR_sigma_w",
+                "pt": "flow",
+                "to": "SQR_sigma_w",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "z_t1",
+                "pt": "flow",
+                "to": "z_t1",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "hat_x",
+                "pt": "flow",
+                "to": "hat_x",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "Kalman_Gain",
+                "pt": "flow",
+                "to": "Kalman_Gain",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 270,
+        "y": 140,
+        "wires": [
+            [
+                "31dbcac0653c1b6e"
+            ]
+        ]
+    },
+    {
+        "id": "31dbcac0653c1b6e",
+        "type": "change",
+        "z": "e7154d9d7cd948fe",
+        "name": "z(t+1) - x̂(t) = Error",
+        "rules": [
+            {
+                "t": "set",
+                "p": "Error",
+                "pt": "flow",
+                "to": "$flowContext(\"z_t1\")-$flowContext(\"hat_x\")",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "Error",
+                "pt": "msg",
+                "to": "Error",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 450,
+        "y": 140,
+        "wires": [
+            [
+                "88545a9759c2d6db"
+            ]
+        ]
+    },
+    {
+        "id": "88545a9759c2d6db",
+        "type": "change",
+        "z": "e7154d9d7cd948fe",
+        "name": "x̂(t+1) = x̂(t) + Kalman_Gain*Error",
+        "rules": [
+            {
+                "t": "set",
+                "p": "hat_x",
+                "pt": "msg",
+                "to": "$flowContext(\"hat_x\") + $flowContext(\"Kalman_Gain\")*$flowContext(\"Error\")",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "SQR_sigma_x",
+                "pt": "msg",
+                "to": "msg.SQR_hat_sigma_x",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 720,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b3b6fe1a93c6934e",
+        "type": "subflow",
+        "name": "Prediction: (σₓ*)²",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 60,
+                "y": 140,
+                "wires": [
+                    {
+                        "id": "adb7164ac4e4a76e"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 740,
+                "y": 200,
+                "wires": [
+                    {
+                        "id": "a09fa6ec87921a88",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
+        "id": "d5fb00d5ad51c0dd",
+        "type": "change",
+        "z": "b3b6fe1a93c6934e",
+        "name": "1/( (σᵥ)² + (σₓ)² ) = A",
+        "rules": [
+            {
+                "t": "set",
+                "p": "A",
+                "pt": "flow",
+                "to": "1/$flowContext(\"SQR_sigma_v+SQR_sigma_x\")",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 600,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "adb7164ac4e4a76e",
+        "type": "change",
+        "z": "b3b6fe1a93c6934e",
+        "name": "setup",
+        "rules": [
+            {
+                "t": "set",
+                "p": "SQR_sigma_v",
+                "pt": "flow",
+                "to": "SQR_sigma_v",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "SQR_sigma_x",
+                "pt": "flow",
+                "to": "SQR_sigma_x",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "SQR_sigma_w",
+                "pt": "flow",
+                "to": "SQR_sigma_w",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 190,
+        "y": 140,
+        "wires": [
+            [
+                "db21943b373eb2f5",
+                "24e5d68256d3ce5e"
+            ]
+        ]
+    },
+    {
+        "id": "24e5d68256d3ce5e",
+        "type": "change",
+        "z": "b3b6fe1a93c6934e",
+        "name": "1/(σᵥᵥ)² = B",
+        "rules": [
+            {
+                "t": "set",
+                "p": "B",
+                "pt": "flow",
+                "to": "1/$flowContext(\"SQR_sigma_w\")\t",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 370,
+        "y": 200,
+        "wires": [
+            [
+                "a09fa6ec87921a88"
+            ]
+        ]
+    },
+    {
+        "id": "db21943b373eb2f5",
+        "type": "change",
+        "z": "b3b6fe1a93c6934e",
+        "name": "(σᵥ)² + (σₓ)²",
+        "rules": [
+            {
+                "t": "set",
+                "p": "SQR_sigma_v+SQR_sigma_x",
+                "pt": "flow",
+                "to": "$flowContext(\"SQR_sigma_v\") + $flowContext(\"SQR_sigma_x\")",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 370,
+        "y": 140,
+        "wires": [
+            [
+                "d5fb00d5ad51c0dd"
+            ]
+        ]
+    },
+    {
+        "id": "a09fa6ec87921a88",
+        "type": "change",
+        "z": "b3b6fe1a93c6934e",
+        "name": "1 / ( A + B ) = (σₓ*)²",
+        "rules": [
+            {
+                "t": "set",
+                "p": "SQR_hat_sigma_x",
+                "pt": "msg",
+                "to": "1/($flowContext(\"A\") + $flowContext(\"B\"))",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 590,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "74940e18692fb756",
+        "type": "subflow",
+        "name": "Kalman 1D",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 320,
+                "y": 240,
+                "wires": [
+                    {
+                        "id": "809987a8c748cc4f"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 1040,
+                "y": 240,
+                "wires": [
+                    {
+                        "id": "5f8f5e7c6d6bd10b",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
+        "id": "809987a8c748cc4f",
+        "type": "subflow:b3b6fe1a93c6934e",
+        "z": "74940e18692fb756",
+        "name": "",
+        "env": [],
+        "x": 480,
+        "y": 240,
+        "wires": [
+            [
+                "43e74b3718e33a3d"
+            ]
+        ]
+    },
+    {
+        "id": "5f8f5e7c6d6bd10b",
+        "type": "subflow:e7154d9d7cd948fe",
+        "z": "74940e18692fb756",
+        "name": "",
+        "env": [],
+        "x": 870,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "43e74b3718e33a3d",
+        "type": "subflow:1239123469e44d93",
+        "z": "74940e18692fb756",
+        "name": "",
+        "env": [],
+        "x": 670,
+        "y": 240,
+        "wires": [
+            [
+                "5f8f5e7c6d6bd10b"
+            ]
+        ]
+    },
+    {
+        "id": "b84981a9d23e5811",
+        "type": "tab",
+        "label": "setting",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "9f8befbcddc40886",
+        "type": "function",
+        "z": "b84981a9d23e5811",
+        "name": "Data",
+        "func": "//noise\nvar max = 3;\nvar min = -3 ;\nmsg.random = Math.random()*(max - min) + min;\n\n//z_t1 là data nhiễu\nmsg.z_t1 = msg.TrueValue + msg.random;\nmsg.payload = msg.z_t1\n\n//Date\nmsg.date = new Date()\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 180,
+        "wires": [
+            [
+                "acfe0343099df4f0"
+            ]
+        ]
+    },
+    {
+        "id": "acfe0343099df4f0",
+        "type": "subflow:74940e18692fb756",
+        "z": "b84981a9d23e5811",
+        "name": "Kalman 1D",
+        "env": [],
+        "x": 830,
+        "y": 180,
+        "wires": [
+            [
+                "a4de691b20d6596e",
+                "d158c415bd6064b4",
+                "4eca1cf076ec4655"
+            ]
+        ],
+        "icon": "node-red/parser-json.svg"
+    },
+    {
+        "id": "9f0550ed10f336df",
+        "type": "delay",
+        "z": "b84981a9d23e5811",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 520,
+        "y": 180,
+        "wires": [
+            [
+                "9f8befbcddc40886"
+            ]
+        ]
+    },
+    {
+        "id": "d5365e43bac39e10",
+        "type": "subflow:e301aded3e300caa",
+        "z": "b84981a9d23e5811",
+        "name": "",
+        "env": [],
+        "x": 170,
+        "y": 180,
+        "wires": [
+            [
+                "a4de691b20d6596e"
+            ]
+        ]
+    },
+    {
+        "id": "a4de691b20d6596e",
+        "type": "switch",
+        "z": "b84981a9d23e5811",
+        "name": "",
+        "property": "loop",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 370,
+        "y": 180,
+        "wires": [
+            [
+                "9f0550ed10f336df"
+            ]
+        ]
+    },
+    {
+        "id": "d158c415bd6064b4",
+        "type": "subflow:f7f6de95c140ceb4",
+        "z": "b84981a9d23e5811",
+        "name": "",
+        "env": [],
+        "x": 1030,
+        "y": 180,
+        "wires": [],
+        "icon": "font-awesome/fa-television"
+    },
+    {
+        "id": "4eca1cf076ec4655",
+        "type": "debug",
+        "z": "b84981a9d23e5811",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "hat_x",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 980,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "bfabd425f5a50394",
+        "type": "function",
+        "z": "b84981a9d23e5811",
+        "name": "Kalman Filter 1D",
+        "func": "\n//Setting Parameters\nmsg.SQR_sigma_v = flow.get('SQR_sigma_v') \nmsg.SQR_sigma_x = flow.get('SQR_sigma_x')\nmsg.SQR_sigma_w = flow.get('SQR_sigma_w')\n\n//step 1 prediction\nmsg.A = 1 / ( msg.SQR_sigma_v + msg.SQR_sigma_x )\nmsg.B = 1 / msg.SQR_sigma_w\nmsg.SQR_hat_sigma_x = 1 / (msg.A + msg.B)\n\n//step 2 Kalman_Gain\nmsg.Kalman_Gain = msg.SQR_hat_sigma_x / msg.SQR_sigma_w\n\n//Error = data nhiễu - data ước lượng\nmsg.Error = msg.z_t1 - msg.hat_x\n\n//step 3 Estimation \nmsg.hat_x = msg.hat_x + msg.Kalman_Gain*msg.Error\n\n//cập nhật\nflow.set(\"SQR_sigma_x\", msg.SQR_hat_sigma_x);\nflow.set(\"hat_x\", msg.hat_x);\n\n//Date\nmsg.date = new Date()\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 480,
+        "wires": [
+            [
+                "6741fd1cc958fdd5"
+            ]
+        ]
+    },
+    {
+        "id": "f1a9f049284b91b4",
+        "type": "function",
+        "z": "b84981a9d23e5811",
+        "name": "Data",
+        "func": "var max = 3;\nvar min = -3 ;\nmsg.random = Math.random()*(max - min) + min;\n//z_t1 là data nhiễu\nmsg.TrueValue =flow.get('TrueValue')\nmsg.z_t1 = msg.TrueValue + msg.random;\nmsg.hat_x = flow.get('hat_x')\nmsg.payload = msg.z_t1\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 480,
+        "wires": [
+            [
+                "bfabd425f5a50394"
+            ]
+        ]
+    },
+    {
+        "id": "6741fd1cc958fdd5",
+        "type": "debug",
+        "z": "b84981a9d23e5811",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "hat_x",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 770,
+        "y": 480,
+        "wires": []
+    }
+]
